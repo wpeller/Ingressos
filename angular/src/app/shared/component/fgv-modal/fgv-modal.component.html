@@ -1,0 +1,17 @@
+<div bsModal #Modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" [config]="{backdrop: 'static'}">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          <strong>{{title}}</strong>
+        </h4>
+        <button type="button" class="close" (click)="close()">
+          <i class="fas fa-times fa-lg"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

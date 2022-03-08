@@ -1,0 +1,16 @@
+<div>
+    <p-pickList [style]="style" [responsive]="true" [source]="source" [target]="target"
+        [showSourceControls]="showSourceControls" [showTargetControls]="showTargetControls"
+        [targetHeader]="targetHeader" [sourceHeader]="sourceHeader" [filterBy]="filterBy"
+        (onMoveToSource)="onMoveToSourceHandle($event)" (onMoveToTarget)="onMoveToTargetHandle($event)"
+        (onMoveAllToSource)="onMoveAllToSourceHandle($event)" (onMoveAllToTarget)="onMoveAllToTargetHandle($event)"
+        (onSourceReorder)="onSourceReorderHandle($event)" (onTargetReorder)="onTargetReorderHandle($event)"
+        (onSourceSelect)="onSourceSelectHandle($event)" (onTargetSelect)="onTargetSelectHandle($event)">
+        <ng-template let-record pTemplate="item">
+            <ng-container *ngTemplateOutlet="itemTemplate ? itemTemplate : defaultTemplate; context: {$implicit: record}"></ng-container>
+        </ng-template>
+        <ng-template #defaultTemplate>
+          <span style='color:red'>Especifique o parâmetro itemTemplate e/ou o ng-template #itemTemplate</span>
+        </ng-template>
+    </p-pickList>
+</div>

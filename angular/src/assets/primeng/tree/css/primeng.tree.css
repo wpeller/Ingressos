@@ -1,0 +1,43 @@
+.ui-tree {
+    width: 100%;
+}
+
+body .ui-widget-content {
+    border: none !important;
+}
+
+span.ui-treenode-label{
+    word-wrap: normal; 
+    color: #063b7d !important; 
+    font-weight: bold; 
+    font-size: 14px;
+}
+.ui-tree .ui-treenode-children span.ui-treenode-label{
+    word-wrap: normal; 
+    color: #063b7d !important; 
+    font-weight: bold; 
+    font-size: 12px;
+}
+
+span.ui-treenode-icon {
+    line-height: 24px !important;
+    font-size: 1.2rem !important;
+}
+
+.ui-tree .ui-chkbox .ui-chkbox-icon {
+    margin-left: 0px;
+}
+
+.ui-tree .ui-treenode-children {
+    padding-left: 20px !important;
+    font-size: 12px !important;
+}
+
+.hidden-tree-node {
+    display: none;
+}
+
+
+.ui-tree-container{
+    overflow: unset !important;
+}

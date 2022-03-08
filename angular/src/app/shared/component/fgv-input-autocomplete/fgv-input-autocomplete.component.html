@@ -1,0 +1,25 @@
+<div class="form-group" [formGroup]="formGroup">
+  <label [for]="id">
+      {{label}}:
+      <span class="campo-obrigatorio" *ngIf="required">*</span>
+  </label>
+  <div class="ui-fluid">
+    <p-autoComplete [dropdown]="dropdown"
+      [readonly]="readonly"
+      [forceSelection]="forceSelection"
+      [minLength]="minLength"
+      [suggestions]="suggestions"
+      emptyMessage="Nenhum resultado foi encontrado"
+      (completeMethod)="completeMethodHandler($event)"
+      (onSelect)="onSelectHandler($event)"
+      (onUnselect)="onUnSelectHandler($event)"
+      (onDropdownClick)="onDropdownClickHandler($event)"
+      [formControlName]="formControlName"
+      ></p-autoComplete>
+  </div>
+  <div class="has-danger" *ngIf="verificaEstado">
+      <div *ngFor="let er of errorMessage">
+          <div class="form-control-feedback">{{er}}</div>
+      </div>
+  </div>
+</div>

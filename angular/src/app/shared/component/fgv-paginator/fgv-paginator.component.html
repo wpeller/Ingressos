@@ -1,0 +1,13 @@
+<div class="primeng-no-data" *ngIf="primengTableHelper.totalRecordsCount == 0">
+  Nenhum resultado encontrado
+</div>
+<div class="primeng-paging-container">
+  <p-paginator rows="{{primengTableHelper.defaultRecordsCountPerPage}}" #paginator
+    (onPageChange)="onPageChangeHandler($event)"
+    [totalRecords]="primengTableHelper.totalRecordsCount"
+    [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage">
+  </p-paginator>
+  <span class="total-records-count">
+    <strong>Total de Registros: {{primengTableHelper.totalRecordsCount}}</strong>
+  </span>
+</div>

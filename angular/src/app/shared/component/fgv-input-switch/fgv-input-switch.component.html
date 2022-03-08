@@ -1,0 +1,26 @@
+<div class="form-group {{class}}" [formGroup]="formGroup">
+    <label [for]="id">
+        {{label}}:
+        <span class="campo-obrigatorio" *ngIf="required">*</span>
+    </label>
+    <div id="input" class="exibir" [ngClass]="{'opacidade': getDisabled}">
+        <div class="toggle-btn toggle-inline">
+
+            <div [ngClass]="{'ui-inputswitch ui-widget': true, 'ui-inputswitch-checked': getChecked, 'ui-state-disabled': getDisabled, 'ui-inputswitch-focus': focused}"
+                 [ngStyle]="style" [class]="styleClass" (click)="onClick(cb)" role="checkbox" [attr.aria-checked]="getChecked">
+                <div class="ui-helper-hidden-accessible">
+                    <input #cb type="checkbox" [attr.id]="id" [attr.name]="name" [attr.tabindex]="tabindex" [checked]="getChecked"
+                           [disabled]="getDisabled" />
+                </div>
+                <span class="ui-inputswitch-slider"></span>
+            </div>
+            <span style="position: absolute; margin-top: 4px; margin-left: 10px;">{{getSimNao}}</span>
+
+        </div>
+    </div>
+    <div class="has-danger" *ngIf="verificaEstado">
+        <div *ngFor="let er of errorMessage">
+            <div class="form-control-feedback">{{er}}</div>
+        </div>
+    </div>
+</div>

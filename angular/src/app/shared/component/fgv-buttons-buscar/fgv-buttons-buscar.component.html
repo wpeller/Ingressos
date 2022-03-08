@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group">
+            <div class="row justify-content-center">
+                <button id="buscar" type="submit" class="btn btn-primary" (click)="buscarHandler()" [disabled]="disabledBuscar"
+                    *ngIf="exibirBusca">
+                    <i class="fa fa-search"></i>Buscar</button>
+                <button id="limpar" type="button" class="btn btn-default" (click)="limparHandler()" *ngIf="exibirLimpar">
+                    <i class="fa fa-eraser"></i>Limpar</button>
+                <button id="novo" type="button" class="btn btn-primary" (click)="novoHandler()" *ngIf="exibirNovo">
+                    <i class="fa fa-plus"></i>Novo</button>
+            </div>
+        </div>
+    </div>
+</div>

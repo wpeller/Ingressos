@@ -1,0 +1,67 @@
+ab{
+    position: fixed;
+    bottom:12px;
+    right:12px;
+  }
+  
+  .fab button{
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    border-radius: 30px;
+    background-color: #6c757d;
+    border: none;
+    box-shadow: 0 1px 5px rgba(0,0,0,.4);
+    font-size: 24px;
+    color: white;
+    -webkit-transition: .2s ease-out;
+    -moz-transition: .2s ease-out;
+    transition: .2s ease-out;
+  }
+  
+  .fab button.main{
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #07315F;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    background-image: url('../../../assets/common/images/atendimento.png');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+  }
+  
+  .fab button.main:before{
+    content: '';
+  }
+  
+  .fab button.main:active,
+  .fab button.main:focus{
+    outline: none;
+    background-color: #07315F;
+    box-shadow: 0 3px 8px rgba(0,0,0,.5);
+   }
+   
+  .fab button.main:active:before,
+  .fab button.main:focus:before{
+    content: '';
+  }
+
+.rodape {
+    position: fixed;
+    right: 65px;
+    bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border-collapse: collapse;
+    border-color: #6c757d;
+    border-width: 1px;
+    border-style: solid;
+    text-align: left !important;
+}
+
+
+  

@@ -1,0 +1,19 @@
+<div [ngClass]="obterClass()">
+  <div class="card mt-3">
+    <div class="card-header">
+      <h5><i class="fas fa-thumbs-up" style="font-size: 18px;"></i>
+        Mais visitados
+        <div class="m-loader" style="width: 30px; display: inline-block;" *ngIf="carregandoMaisVisitados"></div>
+      </h5>
+    </div>
+    <div class="card-body">
+      <div class="col float-left" *ngFor="let item of acessos; let idx = index">
+        <div class="col pt-2 float-left">
+          <p style="word-wrap: normal; color: #063b7d; font-weight: bold; font-size: 14px; margin-left: -30px;">
+            <a (click)="navega(item)" style="cursor: pointer;">{{item.recurso.nome}}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

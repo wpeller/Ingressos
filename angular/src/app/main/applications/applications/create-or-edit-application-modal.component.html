@@ -1,0 +1,43 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #applicationForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="application.id">{{l("EditApplication")}}</span>
+                        <span *ngIf="!application.id">{{l("CreateNewApplication")}}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">               
+                    <div class="form-group">
+                        <label for="Application_Name">{{l("Name")}}</label>
+                        <input type="text" id="Application_Name" class="form-control" [(ngModel)]="application.name" name="Name"   minlength="1"  maxlength="100"  required/>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="Application_UrlPath">{{l("UrlPath")}}</label>
+                        <input type="text" id="Application_UrlPath" class="form-control" [(ngModel)]="application.urlPath" name="UrlPath"   minlength="1"  maxlength="250"  required/>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="Application_SecretWord">{{l("SecretWord")}}</label>
+                        <input type="password" id="Application_SecretWord" class="form-control" [(ngModel)]="application.secretWord" name="SecretWord" minlength="1"  maxlength="25"  required/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="Application_secondsToExpire">{{l("SecondsToExpire")}}</label>
+                        <input type="number" id="Application_secondsToExpire" class="form-control" [(ngModel)]="application.secondsToExpire" name="secondsToExpire"   minlength="1"  maxlength="2"  required/>
+                    </div>				
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">{{l("Cancel")}}</button>
+                    <button type="submit" class="btn btn-primary blue" [disabled]="!applicationForm.form.valid" [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')"><i class="fa fa-save"></i> <span>{{l("Save")}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

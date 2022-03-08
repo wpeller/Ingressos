@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\common.props"></Import>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <RootNamespace>Fgv.Acad.Financeiro</RootNamespace>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Migrations\20170406083347_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20170623075109_AspNetZero_V4_1_Changes.cs" />
+    <Compile Remove="Migrations\20170704084731_Added_GoogleAuthenticatorKey_Column.cs" />
+    <Compile Remove="Migrations\20170714081027_Added_Relation_Between_Edition_And_SubscriptionPayment.cs" />
+    <Compile Remove="Migrations\20170724142223_Upgraded_To_Abp_V2_2.cs" />
+    <Compile Remove="Migrations\20170913133916_Added_SharedMessageId_To_ChatMessage.cs" />
+    <Compile Remove="Migrations\20170914070123_Added_ReceiverReadState_To_ChatMessage.cs" />
+    <Compile Remove="Migrations\20170914084815_Invoice_Changes.cs" />
+    <Compile Remove="Migrations\20170914121022_TypeChange_SharedMessageId_String_Guid.cs" />
+    <Compile Remove="Migrations\20180118065703_Added_Entity_History.cs" />
+    <Compile Remove="Migrations\20180320065710_Upgraded_To_Abp_V3_5.cs" />
+    <Compile Remove="Migrations\20180718081610_Abp_v3_7_Changes.cs" />
+    <Compile Remove="Migrations\20180726063233_Upgraded_ABP_v3.8.0.cs" />
+    <Compile Remove="Migrations\20180731052649_Upgrade_ABP_v3.8.1.cs" />
+    <Compile Remove="Migrations\20180807062930_Upgrade_ABP_v3.8.2.cs" />
+    <Compile Remove="Migrations\20181012141151_Upgraded_To_Abp_v3_9_0.cs" />
+    <Compile Remove="Migrations\20190111133501_InitialMigration.cs" />
+    <Compile Remove="Migrations\20190111154900_Ajuste_de_compatibilizacao.cs" />
+    <Compile Remove="Migrations\20190111181749_Ajustes_posteriores_ao_load_da_aplicacao.cs" />
+    <Compile Remove="Migrations\20190205164441_add_authrozation.cs" />
+    <Compile Remove="Migrations\20190206172949_Use_it_with_other_modules462.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EFCore.BulkExtensions" Version="2.5.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fgv.Acad.Financeiro.Core\Fgv.Acad.Financeiro.Core.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,24 @@
+<!-- <div [ngClass]="{'m-grid m-grid--hor m-grid--root m-page': !useFullWidthLayout(), 'm-content': useFullWidthLayout() }" [style.text-align]="useFullWidthLayout() ? 'center' : 'left'">
+    <div [ngClass]="{'m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-grid--tablet-and-mobile m-grid--hor-tablet-and-mobile m-login m-login--1 m-login--singin': !useFullWidthLayout(), 'row':useFullWidthLayout()}" id="m_login">
+        
+        <div *ngIf="!useFullWidthLayout()" class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1 m-login__content m-grid-item--center image-background-alignment" [style.background-image]="getBgUrl()">
+            <div class="m-grid__item m-grid__item--middle">
+                <h3 class="m-login__welcome">
+                    {{applicationName}}
+                </h3>
+            </div>
+        </div>
+        
+        <div id="accountDiv" [ngClass]="{'m-grid__item m-grid__item--order-tablet-and-mobile-2 m-login__aside': !useFullWidthLayout(), 'col-md-12': useFullWidthLayout()}">
+            <div [ngClass]="{'m-stack m-stack--hor m-stack--desktop': !useFullWidthLayout()}">
+                <div [ngClass]="{'m-stack__item m-stack__item--fluid': !useFullWidthLayout()}">
+                    <div class="m-login__wrapper">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div> -->
+<router-outlet></router-outlet>

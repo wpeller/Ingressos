@@ -1,0 +1,22 @@
+{
+  "remoteServiceBaseUrl": "http://localhost:22742",
+  "appBaseUrl": "http://localhost:4200",
+  "ambiente": "Desenvolvimento",
+  "urlIdentityManager": "https://www-h.fgv.br/tic/identitymanager/unifiedlogon?id=",
+  "idAplicacaoIdentityManager": "cc151e5d-2bd8-442a-85a7-197a87cd310c",
+  "moduloAcesso": "financeiro",
+  "localeMappings": [
+    {
+      "from": "pt-BR",
+      "to": "pt"
+    },
+    {
+      "from": "zh-CN",
+      "to": "zh"
+    },
+    {
+      "from": "he-IL",
+      "to": "he"
+    }
+  ]
+}

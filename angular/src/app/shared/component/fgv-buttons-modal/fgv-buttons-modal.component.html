@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group">
+            <div class="row justify-content-center">
+                <button type="button" class="btn btn-default" (click)="cancelarHandler()">
+                    <i class="fa fa-window-close"></i>Cancelar
+                </button>
+                <ng-content></ng-content>
+                <button type="button" class="btn btn-primary" (click)="confirmarHandler()">
+                    <i class="fa fa-save"></i>Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div [ngClass]="obterClass()">
+  <div class="card mt-3">
+    <div class="card-header">
+      <h5><i class="fas fa-folder-open" style="font-size: 18px;"></i>
+        Consulta a documentos</h5>
+      <div class="m-loader" style="width: 30px; display: inline-block;" *ngIf="carregandoCategoriaDocumentos">
+      </div>
+    </div>
+    <div class="card-body" style="max-height: 500px; overflow: auto;">
+      
+      <p-tree [value]="categoriasTree" 
+      [loading]="carregandoCategoriaDocumentos" 
+      (onNodeSelect)="nodeSelect($event)"
+      selectionMode="single">
+      </p-tree>
+    </div>
+  </div>
+</div>

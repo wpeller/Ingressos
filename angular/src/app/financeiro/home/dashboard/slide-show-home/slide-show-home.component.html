@@ -1,0 +1,11 @@
+  <div class="row">
+    <div class="col-12">
+      <div class="card p-3 rounded">
+        <carousel style="min-width: 100%;" [showIndicators]="false">
+          <slide *ngFor="let item of galerias">
+            <img [src]="item.src" alt="{{item.title}}" style="display: block; width: 100%;">
+          </slide>
+        </carousel>
+      </div>
+    </div>
+  </div>

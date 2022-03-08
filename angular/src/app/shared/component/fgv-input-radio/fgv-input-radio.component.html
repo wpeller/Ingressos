@@ -1,0 +1,18 @@
+<div class="form-group {{class}}" [formGroup]="formGroup">
+  <label [for]="id">
+    {{label}}:
+    <span class="campo-obrigatorio" *ngIf="required">*</span>
+  </label>
+  <div class="ui-g" style="width:250px; margin-bottom:10px">
+    <span class="ui-md-4" *ngFor="let i of items">
+      <p-radioButton [inputId]="id" [name]="name" [style]="style" styleClass="{{classInput}}"
+        [label]="i.label" [value]="i.value"
+        [formControlName]="formControlName"></p-radioButton>
+    </span>
+  </div>
+  <div class="has-danger" *ngIf="verificaEstado">
+    <div *ngFor="let er of errorMessage">
+        <div class="form-control-feedback">{{er}}</div>
+    </div>
+  </div>
+</div>

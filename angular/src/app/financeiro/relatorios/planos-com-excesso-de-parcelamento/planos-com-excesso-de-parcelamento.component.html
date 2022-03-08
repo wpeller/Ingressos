@@ -1,0 +1,223 @@
+<div>
+    <app-bread-crumb-default
+        [breadCrumb]="'Planos com excesso de parcelamento'"
+    >
+    </app-bread-crumb-default>
+    <form [formGroup]="formConsulta">
+    <div class="col-lg-12" *ngIf="!telaCarregada">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+
+    <div class="col-lg-12" [hidden]="!telaCarregada">
+        <fgv-card-search title="">
+            <div class="row mt-3">
+                <div class="col-lg-12">
+                    <s2Modal-modal-consulta-unidade
+                        #modalUnidade
+                        [campoCodigoUnidade]="'codigo'"
+                        [campoNomeUnidade]="'nomeAbreviado'"
+                        [tituloModal]="'Consulta Unidade'"
+                        (onBuscar)="buscarUnidade($event)"
+                        (onSelecionar)="unidadeSelecionadaHandler($event)"
+                        (onPageChange)="buscarUnidade($event)"
+                        (onLimparSelecionado)="onLimparUnidadeSelecionada()"
+                    >
+                    </s2Modal-modal-consulta-unidade>
+                </div>
+            </div>
+            <!-- programa -->
+            <div class="row mt-3">
+                <div class="col-lg-5">
+                    <fgv-input-select
+                        #programas
+                        name="ddlPrograma"
+                        id="ddlPrograma"
+                        formControlName="ddlPrograma"
+                        [formGroup]="formConsulta"
+                        [options]="opcoesDeProgramas"
+                        [label]="'Programa'"
+                    >
+                    </fgv-input-select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-6">
+                    <s2Modal-consulta-aluno
+                        #modalAluno
+                        [campoMatricula]="'codigo'"
+                        [habilitaBotaoLimpar]="true"
+                        [habilitaCampoMatriculaParaDigitacao]="false"
+                        [tituloModal]="'Consulta de alunos'"
+                        (click)="$event.preventDefault()"
+                        (onBuscar)="buscarAluno($event)"
+                        (onSelecionar)="alunoSelecionadoHandler($event)"
+                        (onPageChange)="buscarAluno($event)"
+                        (onLimparSelecionado)="onLimparAlunoSelecionado()"
+                    >
+                    </s2Modal-consulta-aluno>
+                </div>
+
+                <div class="col-lg-5">
+                    <s2Modal-modal-consulta-turma
+                        #modalTurma
+                        [campoCodigoTurma]="'codigoTurma'"
+                        [desabilitarBotaoConsulta]="false"
+                        [desabilitarBoataoLimpar]="false"
+                        [tituloModal]="'Consulta Turma'"
+                        (onBuscar)="buscarTurma($event)"
+                        (onSelecionar)="turmaSelecionadaHandler($event)"
+                        (onPageChange)="buscarTurma($event)"
+                        (onLimparSelecionado)="onLimparTurmaSelecionada()"
+                    ></s2Modal-modal-consulta-turma>
+                </div>
+            </div>
+
+            <div class="row mt-8">
+                <div class="col-lg-3">
+                    <label style="color:black">Data Início</label>
+                    <p-calendar inputId="dataInicio" name="dataInicio" dateFormat="dd/mm/yy" yearRange="1950:2099" [style]="style"
+                        autocomplete="off" data-date-format="format" [(ngModel)]="dataInicio" [yearNavigator]="true"
+                        [locale]="ptBr" formControlName="dataInicio">
+                    </p-calendar>
+                </div>
+                <div class="col-lg-3">
+                    <label style="color:black">Data Fim</label>
+                    <p-calendar inputId="dataFim" name="dataFim" dateFormat="dd/mm/yy" yearRange="1950:2099" [style]="style"
+                        autocomplete="off" data-date-format="format" [(ngModel)]="dataFim" [yearNavigator]="true"
+                        [locale]="ptBr" formControlName="dataFim">
+                    </p-calendar>
+
+                </div>
+                <div class="col-lg-6">
+                    <label style="color:black;margin-top:30px;">(Intervalo máximo de 3 anos)</label>
+                </div>
+
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-lg-12">
+                    Obs: O relatório busca alunos com excesso de parcelamento baseado na norma.
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-12">
+                    <fgv-buttons-buscar
+                        [exibirNovo]="false"
+                        (buscar)="buscar($event)"
+                        (limpar)="limpar()"
+                        [disabledBuscar]="!formConsulta.valid"
+                    >
+                    </fgv-buttons-buscar>
+                </div>
+            </div>
+        </fgv-card-search>
+    </div>
+</form>
+</div>
+
+<div  class="col-lg-12" *ngIf="primengTableHelper.records && primengTableHelper.records.length > 0">
+    <div class="row">
+        <div id="'exportar'" class="col-lg-2  float: right" style="text-align: right">
+            <fgv-input-select
+                #exportacao
+                name="ddlExportacao"
+                id="ddlExportacao"
+                formControlName="ddlExportacao"
+                (change)="onChangeExportarHandler($event)"
+                [formGroup]="formConsulta"
+                [options]="opcoesDeExportacao"
+                [label]="'Exportar para'" >
+            </fgv-input-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 primeng-datatable-container">
+            <p-table
+                [value]="primengTableHelper.records"
+                (onLazyLoad)="buscar($event)"
+                [paginator]="false"
+                [lazy]="true"
+                #dataTable
+            >
+                <ng-template #headerTemplate pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="UnidadeResponsavel">
+                            Unidade
+                            <p-sortIcon field="UnidadeResponsavel"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="Turma">
+                            Turma
+                            <p-sortIcon
+                                field="Turma"
+                            ></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="Curso">
+                            Curso
+                            <p-sortIcon field="NomeCurso"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="NomeAluno">
+                            Aluno
+                            <p-sortIcon field="NomeAluno"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="CPF">
+                            CPF
+                            <p-sortIcon field="CPF"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="Matricula">
+                            Matrícula
+                            <p-sortIcon
+                                field="Matricula"
+                            ></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="Responsável Financeiro">
+                            Responsável financeiro
+                            <p-sortIcon field="ResponsavelFinanceiro"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="NumeroDeCobrancas">
+                            Nº total de parcelas
+                            <p-sortIcon field="NumeroDeCobrancas"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="NumeroDeParcelasEmExcesso">
+                            Nº de parcelas em excesso
+                            <p-sortIcon field="NumeroDeParcelasEmExcesso"></p-sortIcon>
+                        </th>
+                        <th>
+                            Número da IN
+                        </th>
+                        <th  pSortableColumn="DataMatricula">
+                            Data matrícula
+                            <p-sortIcon field="DataMatricula"></p-sortIcon>
+                        </th>
+                    </tr>
+                </ng-template>
+
+                <ng-template
+                    #bodyTemplate
+                    pTemplate="body"
+                    let-maximoParcelamento="$implicit"
+                >
+                    <tr>
+                        <td>{{ maximoParcelamento.unidadeResponsavel }}</td>
+                        <td>{{ maximoParcelamento.turma }}</td>
+                        <td>{{ maximoParcelamento.nomeCurso }}</td>
+                        <td>{{ maximoParcelamento.nomeAluno }}</td>
+                        <td>{{ maximoParcelamento.cpf }}</td>
+                        <td>{{ maximoParcelamento.matricula }}</td>
+                        <td>{{ maximoParcelamento.responsavelFinanceiro }}</td>
+                        <td>{{ maximoParcelamento.numeroDeCobrancas }}</td>
+                        <td>{{ maximoParcelamento.numeroDeParcelasEmExcesso }}</td>
+                        <td>{{ maximoParcelamento.identificadorNormaPrecoMinimo + '/' + maximoParcelamento.anoNormaPrecoMinimo  }}</td>
+                        <td>{{ maximoParcelamento.dataMatricula | date: "dd/MM/yyyy"  }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            <fgv-paginator
+                #paginator
+                [primengTableHelper]="primengTableHelper"
+                (onPageChange)="getEntityChanges($event)"
+            >
+            </fgv-paginator>
+        </div>
+    </div>
+
+</div>

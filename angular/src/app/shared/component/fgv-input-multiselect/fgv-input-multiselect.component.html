@@ -1,0 +1,22 @@
+<div class="form-group {{class}}" [formGroup]="formGroup">
+  <label [for]="id">
+      {{label}}:
+      <span class="campo-obrigatorio" *ngIf="required">*</span>
+  </label>
+  <!--p-multiSelect [inputId]="id" [name]="name" [options]="options" [(ngModel)]="value"
+      styleClass={{classInput}}
+      [optionLabel]="optionLabel" [filterPlaceHolder]="filterPlaceHolder" [defaultLabel]="defaultLabel"
+      [formControlName]="formControlName" ></p-multiSelect-->
+  <select [id]="id" [name]="name" class="form-control {{classInput}}" [style]="style"
+      multiple="multiple" [size]="rows"
+      [formControlName]="formControlName">
+      <option value="" selected="selected" *ngIf="exibirSelecione">-- {{textoSelecione}} --</option>
+      <ng-content></ng-content>
+      <option *ngFor="let option of options" [value]="option.value">{{option.label}}</option>
+  </select>
+  <div class="has-danger" *ngIf="verificaEstado">
+      <div *ngFor="let er of errorMessage">
+          <div class="form-control-feedback">{{er}}</div>
+      </div>
+  </div>
+</div>

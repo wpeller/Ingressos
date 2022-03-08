@@ -1,0 +1,16 @@
+<div class="form-group {{class}}" [formGroup]="formGroup">
+    <label [for]="id">
+        {{label}}:
+        <span class="campo-obrigatorio" *ngIf="required">*</span>
+    </label>
+    <input type="text" [id]="id" [name]="name" class="form-control {{classInput}}" [style]="style"
+        [maxlength]="maxlength"
+        [minlength]="minlength"
+        [formControlName]="formControlName" [placeholder]="placeholder"
+        [readonly]="readonly">
+    <div class="has-danger" *ngIf="verificaEstado">
+        <div *ngFor="let er of errorMessage">
+            <div class="form-control-feedback">{{er}}</div>
+        </div>
+    </div>
+</div>

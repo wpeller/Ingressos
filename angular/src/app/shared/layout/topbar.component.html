@@ -1,0 +1,173 @@
+<!-- BEGIN: Topbar -->
+<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
+    <nav class="m-stack__item m-topbar__nav-wrapper" [attr.aria-label]="l('TopMenu')">
+        <ul class="m-topbar__nav m-nav m-nav--inline" aria-label="TopMenu" role="menubar">
+            <li #dropdownPesquisaElement
+                class="m-nav__item m-topbar__languages m-dropdown m-dropdown--small m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light m-list-search--skin-light"
+                [attr.m-dropdown-persistent]="0" [attr.m-dropdown-toggle]="papeis && papeis.length>0?'click':''">
+                <a href="javascript:;" (click)="definirFocuMenu()" class="m-nav__link m-dropdown__toggle">
+                    <span class="m-nav__link-text">
+                        <i class="flaticon-search-1"></i>
+                    </span>
+                </a>
+                <div *ngIf="pesquisouMenu == false" class="m-dropdown__wrapper">
+                    <span class="m-dropdown__arrow m-dropdown__arrow--right"></span>
+                    <div class="m-dropdown__inner" style="width: 350px">
+                        <!-- caixa de texto -->
+                        <div class="m-dropdown__header" style="background-color: #fff !important">
+                            <form class="m-list-search__form">
+                                <div class="m-list-search__form-wrapper">
+                                    <span class="m-list-search__form-input-wrapper">
+                                        <input (keyup)="pesquisarMenuParcial()" [(ngModel)]="textoPesquisaMenu"
+                                            #searchFilterText autocomplete="off" type="text" name="searchFilterText"
+                                            class="form-control" placeholder="Pesquisar...">
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- fim da caixa de texto -->
+                        <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                        <div *ngIf="menuAux.length > 0" class="m-dropdown__body"
+                            style="overflow-y: auto; max-height: 400px">
+                            <div class="m-dropdown__content">
+                                <div *ngIf="menuAux.length == 0">
+                                    <span>Menu não encontrado!</span>
+                                </div>
+                                <ul class="m-nav m-nav--skin-light">
+                                    <ng-container *ngFor="let menu of menuAux">
+                                        <li class="m-nav__item">
+                                            <a href="javascript:;" class="m-nav__link" (click)="onChangeMenu(menu)">
+                                                <span class="m-nav__link-icon">
+                                                    <span class="m-nav__link-icon-wrapper">
+                                                        <!-- <i class="far fa-user-circle"></i> -->
+                                                    </span>
+                                                </span>
+                                                <div id="tooltip" class="m-nav__link-title m-topbar__language-text m-nav__link-text">
+                                                    {{menu.titulo}}
+                                                    <span class="tooltiptext">{{menu.breadCrumb}}</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li #dropdownPesquisaElement
+                class="m-nav__item m-topbar__languages m-dropdown m-dropdown--small m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light m-list-search--skin-light"
+                [attr.m-dropdown-persistent]="0" [attr.m-dropdown-toggle]="papeis && papeis.length>0?'click':''">
+                <a href="javascript:;" (click)="definirFocusPerquisaPapeis()" class="m-nav__link m-dropdown__toggle">
+                    <span class="m-nav__link-text">
+                        <!-- <i class="fas fa-user-circle"></i> -->
+                        <span class="m-menu__link-text">
+                            {{!papelAtual?.nome?'Nenhum Papel Selecionado':papelAtual.nome}}
+                        </span>
+                        <i class="fa fa-angle-down"></i>
+                    </span>
+                </a>
+                <div *ngIf="pesquisou == false" class="m-dropdown__wrapper">
+                    <span class="m-dropdown__arrow m-dropdown__arrow--right"></span>
+                    <div class="m-dropdown__inner" style="width: 350px">
+                        <div class="m-dropdown__header" style="background-color: #fff !important">
+                            <form class="m-list-search__form">
+                                <div class="m-list-search__form-wrapper">
+                                    <span class="m-list-search__form-input-wrapper">
+                                        <input (keyup)="pesquisarParcial()" [(ngModel)]="textoPesquisaParcial"
+                                            #searchFilterTextParcial autocomplete="off" type="text"
+                                            name="searchFilterTextParcial" class="form-control"
+                                            placeholder="Pesquisar...">
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                        <div class="m-dropdown__inner">
+                            <div class="m-dropdown__body" style="overflow-y: auto; max-height: 400px">
+                                <div class="m-dropdown__content">
+                                    <div *ngIf="papeisAux.length == 0">
+                                        <span>Perfil não encontrado!</span>
+                                    </div>
+                                    <ul class="m-nav m-nav--skin-light">
+                                        <ng-container *ngFor="let papel of papeisAux">
+                                            <!-- <li class="m-nav__item" [ngClass]="{'m-nav__item--active': language.active}"> -->
+                                            <li class="m-nav__item">
+                                                <a href="javascript:;" class="m-nav__link"
+                                                    (click)="onChangePapel(papel)">
+                                                    <span class="m-nav__link-icon">
+                                                        <!--  <span class="m-nav__link-icon-wrapper">
+                                                            <i class="far fa-user-circle"></i> 
+                                                        </span>-->
+                                                    </span>
+                                                    <span
+                                                        class="m-nav__link-title m-topbar__language-text m-nav__link-text">{{papel.nome}}
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ng-container>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- <li headerNotifications class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" m-dropdown-toggle="click" data-dropdown-persistent="true" id="header_notification_bar"></li> -->
+
+            <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
+                m-dropdown-toggle="click">
+                <a href="#" class="m-nav__link m-dropdown__toggle">
+                    <span class="m-topbar__username">
+                        <i *ngIf="isImpersonatedLogin" class="fa fa-reply m--font-danger"></i>
+                        <span *ngIf="isMultiTenancyEnabled" class="tenancy-name">{{tenancyName}}\</span>{{userName}}
+                    </span>
+                    <span class="m-topbar__userpic">
+                        <img *ngIf="profilePicture" alt=""
+                            class="header-profile-picture m--img-rounded m--marginless m--img-centered"
+                            [src]="profilePicture" />
+                    </span>
+                </a>
+                <div class="m-dropdown__wrapper">
+                    <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                    <div class="m-dropdown__inner">
+                        <div class="m-dropdown__header m--align-center">
+                            <div class="m-card-user m-card-user--skin-dark">
+                                <div class="m-card-user__pic">
+                                    <img alt=""
+                                        class="header-profile-picture m--img-rounded m--marginless m--img-centered"
+                                        [src]="profilePicture" />
+                                </div>
+                                <div class="m-card-user__details">
+                                    <span class="m-card-user__name m--font-weight-500">
+                                        {{shownLoginName}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-dropdown__body">
+                            <nav class="m-dropdown__content" [attr.aria-label]="l('UserAccount')">
+                                <ul class="m-nav m-nav--skin-light" [attr.aria-label]="l('UserAccount')" role="menu">
+                                    <li class="m-nav__item" role="none">
+                                        <a href="javascript:;" (click)="logout()"
+                                            class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
+                                            role="menuitem" aria-haspopup="true" aria-expanded="false"
+                                            tabindex="-1">{{l("Logout")}}</a>
+
+                                        <a href="javascript:;" (click)="AlterarSenha()"
+                                            class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
+                                            role="menuitem" aria-haspopup="true" aria-expanded="false"
+                                            tabindex="-1">{{l("Alterar Senha")}}</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!-- END: Topbar -->

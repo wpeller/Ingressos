@@ -1,0 +1,21 @@
+<div class="m-content">
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__body">
+            <div class="row formulario">
+                <div class="col-12">
+                    <ng-content></ng-content>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="form-group">
+                    <button id="voltar" type="button" class="btn btn-default" (click)="acaoVoltar()" *ngIf="exibirVoltar">
+                        <i class="fa fa-arrow-left"></i>Voltar
+                    </button>
+                    <button id="salvar" type="button" class="btn btn-primary" (click)="acaoSalvar()" *ngIf="exibirVoltar">
+                        <i class="fa fa-save"></i>Salvar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

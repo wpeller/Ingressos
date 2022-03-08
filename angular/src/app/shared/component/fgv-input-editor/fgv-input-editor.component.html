@@ -1,0 +1,18 @@
+<div class="form-group" [formGroup]="formGroup">
+    <label [for]="id">
+        {{label}}
+        <span class="campo-obrigatorio" *ngIf="required">*</span>
+    </label>
+    <p-editor [id]="id" [formControlName]="formControlName" [style]="style" #textEditor
+        [readonly]="readonly" [required]="required" *ngIf="simple">
+        <p-header>
+        </p-header>
+    </p-editor>
+    <p-editor [id]="id" [formControlName]="formControlName" [style]="style" #textEditor
+        [readonly]="readonly" [required]="required" *ngIf="!simple"></p-editor>
+    <div class="has-danger" *ngIf="verificaEstado">
+        <div *ngFor="let er of errorMessage">
+            <div class="form-control-feedback">{{er}}</div>
+        </div>
+    </div>
+</div>

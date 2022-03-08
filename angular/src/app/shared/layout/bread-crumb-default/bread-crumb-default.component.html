@@ -1,0 +1,36 @@
+<div class="m-subheader">
+  <div class="d-flex align-items-center">
+    <div class="mr-auto col-md-12">
+      <div class="row">
+        <div class="col-md">
+          <p [ngClass]="{'ambientePreProd': preProd,
+          'ambienteHomolog': homologacao,
+          'ambienteSustentacao': sustentacao,
+          'ambienteDesenvolvimento': desenvolvimento}" *ngIf="ambiente !== ''">{{ambiente}}</p>
+          <h3 class="m-subheader__title">
+            <span style="color: #003b81 !important; font-weight: bold;">{{titulo}}</span>
+          </h3>
+        </div>
+        <div class="col-md" style="text-align: right; color: #003b81 !important;" *ngIf="!ehHome">
+          <span class="m-section__sub pagina-breadcrumb m-subheader__title--separator">
+            Onde Estou:&nbsp;
+          </span>
+          <span class="m-section__sub pagina-breadcrumb" style="font-weight: bold;">
+            {{breadCrumb}}
+          </span>
+          <span class="m-section__sub pagina-breadcrumb" *ngIf="!ehHome">
+            <a href="javascript:;" (click)="verificar()" *ngIf="!favorito">
+              <i class="fa fa-star"
+                title="Adicionar aos favoritos"></i><span class="favoritos">Adicionar aos favoritos</span>
+            </a>
+            <a href="javascript:;" (click)="verificar()" *ngIf="favorito">
+              <i class="fa fa-star"
+                title="Remover dos favoritos"></i><span class="favoritos">Remover dos favoritos</span>
+            </a>
+          </span>
+        </div>
+      </div>
+      <hr/>
+    </div>
+  </div>
+</div>

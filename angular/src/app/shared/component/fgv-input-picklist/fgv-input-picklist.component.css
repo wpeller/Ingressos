@@ -1,0 +1,14 @@
+.ui-picklist-listwrapper {
+    border: 1px solid #c8c8c8;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+body .ui-picklist .ui-picklist-caption {
+    background-color: #f4f4f4;
+    color: #333333;
+    padding: 0.571em 1em;
+    font-weight: 400;
+    border: 0;
+    border-bottom: 1px solid #c8c8c8;
+}

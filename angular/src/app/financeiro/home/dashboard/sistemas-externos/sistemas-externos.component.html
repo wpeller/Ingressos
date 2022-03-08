@@ -1,0 +1,21 @@
+<div [ngClass]="obterClass()">
+  <div class="card mt-3">
+    <div class="card-header">
+      <h5><i class="fas fa-external-link-alt" style="font-size: 18px;"></i>
+        Sistemas externos
+      </h5>
+    </div>
+    <div class="card-body">
+      <div class="col" style="margin-left: -30px; line-height: 30px;" *ngFor="let item of sistemasExternos">
+        <div class="col-md-1 float-left">
+          <i class="{{item.collapsedIcon}}"></i>
+        </div>
+        <div class="col-md-11 float-left">
+          <a [href]="item.data" style="color: #063b7d; font-size: 14px; font-weight: bold;">
+            {{item.label}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

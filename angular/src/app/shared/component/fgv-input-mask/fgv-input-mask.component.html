@@ -1,0 +1,13 @@
+<div class="form-group {{class}}" [formGroup]="formGroup">
+    <label [for]="id">
+        {{label}}:
+        <span class="campo-obrigatorio" *ngIf="required">*</span>
+    </label>
+    <p-inputMask type="text" [style]="style" styleClass="{{classInput}}" [mask]="mask" [formControlName]="formControlName" [placeholder]="placeholder">
+    </p-inputMask>
+    <div class="has-danger" *ngIf="verificaEstado">
+        <div *ngFor="let er of errorMessage">
+            <div class="form-control-feedback">{{er}}</div>
+        </div>
+    </div>
+</div>

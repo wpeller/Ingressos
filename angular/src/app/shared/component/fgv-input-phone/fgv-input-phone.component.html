@@ -1,0 +1,14 @@
+<div class="form-group {{class}}" [formGroup]="formGroup">
+    <label [for]="id">
+        {{label}}:
+        <span class="campo-obrigatorio" *ngIf="required">*</span>
+    </label>
+    <p-inputMask type="text" [inputId]="id" [formControlName]="formControlName" [style]="style" styleClass="{{classInput}}"
+        mask="(99)99999-999?9"></p-inputMask>
+        Exemplo: (21)8888-9999 or (21)98888-9999
+    <div class="has-danger" *ngIf="verificaEstado">
+        <div *ngFor="let er of errorMessage">
+            <div class="form-control-feedback">{{er}}</div>
+        </div>
+    </div>
+</div>

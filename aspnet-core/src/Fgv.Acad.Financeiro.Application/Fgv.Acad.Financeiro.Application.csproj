@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\common.props"></Import>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <AssemblyName>Fgv.Acad.Financeiro.Application</AssemblyName>
+    <PackageId>Fgv.Acad.Financeiro.Application</PackageId>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <RootNamespace>Fgv.Acad.Financeiro</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
+    <PackageReference Include="Fgv.Tic.ApiConnectorCore" Version="1.0.0.9" />
+    <PackageReference Include="Fgv.Tic.WsConnectorCore" Version="1.0.0.3" />
+    <PackageReference Include="itext7.pdfhtml" Version="3.0.4" />
+    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.6.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fgv.Acad.Financeiro.Application.Shared\Fgv.Acad.Financeiro.Application.Shared.csproj" />
+    <ProjectReference Include="..\Fgv.Acad.Financeiro.Core\Fgv.Acad.Financeiro.Core.csproj" />
+    <ProjectReference Include="..\Fgv.Acad.Financeiro.EntityFrameworkCore\Fgv.Acad.Financeiro.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Transactions" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,27 @@
+<!-- BEGIN: Horizontal Menu -->
+<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-light " id="m_aside_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
+<div class="{{getCssClass()}}" id="m_header_menu" #m_header_menu>
+    <ul class="m-menu__nav m-menu__nav--submenu-arrow">
+        <ng-container *ngFor="let item of menu.items">
+            <ng-container *ngIf="item.name" [ngTemplateOutlet]="m_menu" [ngTemplateOutletContext]="{ item: item, depth: 0 }">
+            </ng-container>
+        </ng-container>
+    </ul>
+</div>
+<!-- END: Horizontal Menu -->
+
+
+
+<!-- item inner -->
+<ng-template #m_menu_item_inner let-item="item" let-parentItem="parentItem">
+    <!-- if menu item has icon -->
+    <i *ngIf="item.icon" class="m-menu__link-icon" [ngClass]="item.icon"></i>
+
+    <ng-container>
+        <span class="m-menu__item-here"></span>
+        <!-- menu item title text -->
+        <span class="m-menu__link-text">
+            {{l(item.name)}}
+        </span>
+    </ng-container>
+</ng-template>
