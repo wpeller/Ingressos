@@ -25,16 +25,32 @@ namespace Fgv.Acad.Financeiro.Eventos
         }
 
 
-        public async Task< List<Venda>> ObterTodos() {
+        public async Task<List<Venda>> ObterTodos()
+        {
 
             return await _repository.GetAll()
+                  .Include(t => t.Cliente).ThenInclude(ta => ta.Vendas)
+                 .Include(t => t.TipoIngresso).ThenInclude(ta => ta.Vendas)
+                 .Where(c => c.DataCancelamentoVenda.HasValue == false)
                 .ToListAsync();
 
 
         }
 
 
-        public async Task<long> SalvarOuAlterar(Venda venda)
+        public Venda ObterPorId(long id)
+        {
+
+            return _repository.GetAll()
+                  .Where(c => c.DataCancelamentoVenda.HasValue == false)
+                  .Where(c => c.Id == id)
+                .FirstOrDefault();
+
+
+        }
+
+
+        public async Task<Venda> SalvarOuAlterar(Venda venda)
         {
 
 
@@ -45,15 +61,39 @@ namespace Fgv.Acad.Financeiro.Eventos
 
                 _unitOfWorkManager.Current.SaveChanges();
 
-                return output.Id;
+                return output;
 
             }
 
-            return 0;
+            return null;
 
         }
 
- 
+
+
+        public async Task<Venda> SalvarEstorno(long idVenda)
+        {
+
+
+            if (idVenda != 0)
+            {
+                Venda venda = this.ObterPorId(idVenda);
+
+                venda.DataCancelamentoVenda = DateTime.Now;
+
+                Venda output = await _repository.UpdateAsync(venda);
+
+                _unitOfWorkManager.Current.SaveChanges();
+
+                return output;
+
+            }
+
+            return null;
+
+        }
+
+
 
     }
 }

@@ -7,6 +7,7 @@ namespace Fgv.Acad.Financeiro.Eventos
     public interface IVendasManager: ITransientDependency
     {
         Task<List<Venda>> ObterTodos();
-        Task<long> SalvarOuAlterar(Venda venda);
+        Task<Venda> SalvarEstorno(long idVenda);
+        Task<Venda> SalvarOuAlterar(Venda venda);
     }
 }

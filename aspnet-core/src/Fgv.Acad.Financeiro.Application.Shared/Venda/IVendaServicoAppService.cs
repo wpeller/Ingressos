@@ -5,6 +5,7 @@ namespace Fgv.Acad.Financeiro.Eventos
 {
     public interface IVendaServicoAppService
     {
-        GenericResultObject<List<VendaDto>> ObterTodos();
+        GenericResultObject<long> EstornarVenda(VendaEstornoDto vendaEstorno);
+        GenericResultObject<List<VendaDto>> ObterTodosNaoEstornados();
     }
 }

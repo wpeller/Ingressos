@@ -4,14 +4,16 @@ using Fgv.Acad.Financeiro.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fgv.Acad.Financeiro.Migrations
 {
     [DbContext(typeof(FinanceiroDbContext))]
-    partial class FinanceiroDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220310205653_NovaVersao2")]
+    partial class NovaVersao2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1202,7 +1204,7 @@ namespace Fgv.Acad.Financeiro.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("DataCancelamentoVenda");
+                    b.Property<long?>("ClienteId");
 
                     b.Property<bool>("EhMeiaEntrada");
 
@@ -1212,11 +1214,13 @@ namespace Fgv.Acad.Financeiro.Migrations
 
                     b.Property<DateTime>("Timestamp");
 
+                    b.Property<long?>("TipoIngressoId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("IdCliente");
+                    b.HasIndex("ClienteId");
 
-                    b.HasIndex("IdTipoIngresso");
+                    b.HasIndex("TipoIngressoId");
 
                     b.ToTable("Venda");
                 });
@@ -1609,13 +1613,11 @@ namespace Fgv.Acad.Financeiro.Migrations
                 {
                     b.HasOne("Fgv.Acad.Financeiro.Eventos.Cliente", "Cliente")
                         .WithMany("Vendas")
-                        .HasForeignKey("IdCliente")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ClienteId");
 
                     b.HasOne("Fgv.Acad.Financeiro.Eventos.TipoIngresso", "TipoIngresso")
                         .WithMany("Vendas")
-                        .HasForeignKey("IdTipoIngresso")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("TipoIngressoId");
                 });
 
             modelBuilder.Entity("Fgv.Acad.Financeiro.MultiTenancy.Payments.SubscriptionPayment", b =>

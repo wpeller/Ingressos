@@ -24,7 +24,7 @@ namespace Fgv.Acad.Financeiro.Eventos
             _tipoIngresosManager = tipoIngresosManager;
         }
 
-        public GenericResultObject<List<VendaDto>> ObterTodos()
+        public GenericResultObject<List<VendaDto>> ObterTodosNaoEstornados()
         {
 
             List<Venda> listaEvento = _vendaManager.ObterTodos().Result;
@@ -38,12 +38,12 @@ namespace Fgv.Acad.Financeiro.Eventos
             return retorno;
 
         }
- 
+
 
 
         public GenericResultObject<long> Salvar(NovaVendaDto novaVenda)
         {
-            long id = 0;
+            Venda vendaOutput;
 
 
 
@@ -52,23 +52,46 @@ namespace Fgv.Acad.Financeiro.Eventos
 
             Venda venda = new Venda();
 
-            venda.Cliente =   _clienteManager.ObterCliente(novaVenda.cpf).Result ;
-            //venda.TipoIngresso = _tipoIngresosManager.ObterCliente(novaVenda.cpf).Result;
+            Cliente cliente = _clienteManager.ObterCliente(novaVenda.cpf).Result;
 
-            venda.TipoIngresso = new TipoIngresso { Id = 1 };
+            venda.IdTipoIngresso = 1;
+            venda.IdCliente = cliente.Id;
 
-            id = _vendaManager.SalvarOuAlterar(venda).Result;
+            vendaOutput = _vendaManager.SalvarOuAlterar(venda).Result;
 
             retorno.Mensagem = "Venda salva com sucesso.";
 
 
-            retorno.Item = id;
+            retorno.Item = vendaOutput.Id;
             retorno.Sucesso = true;
             return retorno;
 
         }
 
 
+        public GenericResultObject<long> EstornarVenda(VendaEstornoDto vendaEstorno)
+        {
+            Venda venda;
+
+            GenericResultObject<long> retorno = new GenericResultObject<long>(0, true, string.Empty);
+
+
+            if (vendaEstorno.idVenda == 0) {
+                retorno.Sucesso = false;
+                retorno.Mensagem = "Id não informado.";
+                return retorno;
+            }
+
+            venda = _vendaManager.SalvarEstorno(vendaEstorno.idVenda).Result;
+
+            retorno.Mensagem = "Venda estornada com sucesso.";
+
+
+            retorno.Item = venda.Id;
+            retorno.Sucesso = true;
+            return retorno;
+
+        }
 
     }
 }
