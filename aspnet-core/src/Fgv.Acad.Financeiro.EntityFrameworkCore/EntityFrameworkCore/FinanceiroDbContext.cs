@@ -12,6 +12,7 @@ using Fgv.Acad.Financeiro.MultiTenancy.Accounting;
 using Fgv.Acad.Financeiro.MultiTenancy.Payments;
 using Fgv.Acad.Financeiro.Navigations;
 using Fgv.Acad.Financeiro.Storage;
+using Fgv.Acad.Financeiro.Eventos;
 
 namespace Fgv.Acad.Financeiro.EntityFrameworkCore
 {
@@ -33,6 +34,10 @@ namespace Fgv.Acad.Financeiro.EntityFrameworkCore
 
         public virtual DbSet<DistributedAuthorization> DistributedAuthorizations { get; set; }
         public virtual DbSet<Navigation> Navigations { get; set; }
+        public virtual DbSet<Evento> Evento { get; set; }
+        public virtual DbSet<Venda> Venda { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<TipoIngresso> TipoIngresso { get; set; }
 
 
         public FinanceiroDbContext(DbContextOptions<FinanceiroDbContext> options)
@@ -44,7 +49,7 @@ namespace Fgv.Acad.Financeiro.EntityFrameworkCore
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ChangeAbpTablePrefix<Tenant,Role,User>("");
+            modelBuilder.ChangeAbpTablePrefix<Tenant, Role, User>("");
             modelBuilder.Entity<BinaryObject>(b =>
             {
                 b.HasIndex(e => new { e.TenantId });
@@ -62,6 +67,25 @@ namespace Fgv.Acad.Financeiro.EntityFrameworkCore
                 b.HasIndex(e => new { e.PaymentId, e.Gateway });
             });
 
+            modelBuilder
+              .Entity<TipoIngresso>()
+              .HasOne(e => e.Evento)
+              .WithMany(e => e.ListaTipoIngresso)
+              .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder
+              .Entity<Venda>()
+              .HasOne(e => e.TipoIngresso)
+              .WithMany(e => e.Vendas)
+              .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder
+             .Entity<Venda>()
+             .HasOne(e => e.Cliente )
+             .WithMany(e => e.Vendas)
+             .OnDelete(DeleteBehavior.Cascade);
+
+
             modelBuilder.ConfigurePersistedGrantEntity();
 
             //Adjust Conventions
@@ -73,10 +97,10 @@ namespace Fgv.Acad.Financeiro.EntityFrameworkCore
 
             //    //Remove OneToManyCascadeDelete and ManyToManyCascadeDelete
             //    //entityType.GetForeignKeys().Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade).ToList().ForEach(fk => fk.DeleteBehavior = DeleteBehavior.Restrict);
-                
+
             //    //Remove Unicode
             //    entityType.GetProperties().Where(p => p.ClrType == typeof(string)).ToList().ForEach(p => p.IsUnicode(false));
-                
+
             //    //Set MaxLength
             //    entityType.GetProperties().Where(p => p.ClrType == typeof(string) && !p.GetMaxLength().HasValue).ToList().ForEach(p => p.SetMaxLength(1000));
             //}
