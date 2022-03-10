@@ -20,6 +20,7 @@ namespace Fgv.Acad.Financeiro.Eventos
                                         IUnitOfWorkManager unitOfWorkManager)
         {
             _eventoRepository = repository;
+            _unitOfWorkManager = unitOfWorkManager;
         }
 
 

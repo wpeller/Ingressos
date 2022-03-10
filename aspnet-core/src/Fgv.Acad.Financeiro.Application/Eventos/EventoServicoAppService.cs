@@ -8,14 +8,16 @@ namespace Fgv.Acad.Financeiro.Eventos
 {
     public class EventoServicoAppService : FinanceiroAppServiceBase ,  IEventoServicoAppService
     {
-        private IEventoManager _eventoManager;
+        private readonly IEventoManager _eventoManager;
 
-        public EventoServicoAppService(IEventoManager eventoManager) {
+
+        public EventoServicoAppService(IEventoManager eventoManager)
+        {
 
             _eventoManager = eventoManager;
         }
 
-        public  GenericResultObject<List<Evento>>  ObterTodosAtivos() {
+        public GenericResultObject<List<Evento>>  ObterTodosAtivos() {
 
             GenericResultObject<List<Evento>> retorno = new GenericResultObject<List<Evento>>
             {
