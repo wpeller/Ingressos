@@ -4,11 +4,7 @@ using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Fgv.Acad.Financeiro.AcessoExterno.Boundaries;
 using Fgv.Acad.Financeiro.AcessoExterno.Boundaries.Apis;
-using Fgv.Acad.Financeiro.AcessoExterno.Boundaries.LogIDE;
 using Fgv.Acad.Financeiro.Authorization.Distributed;
-using Fgv.Acad.Financeiro.Relatorios;
-using Fgv.Acad.Financeiro.Relatorios.Exporting;
-using Fgv.Acad.Financeiro.Relatorios.Exporting.Interfaces;
 using Fgv.Acad.Financeiro.SSO;
 using Fgv.Tic.WsConnectorCore;
 
@@ -38,9 +34,9 @@ namespace Fgv.Acad.Financeiro
             IocManager.RegisterIfNot<Connector>();
             IocManager.RegisterIfNot<ConfigurationResolver>();
             IocManager.RegisterIfNot<IHttpClientApiRequest, HttpClientApiRequest>();
-            IocManager.RegisterIfNot<ITokenSSOManager, TokenSSOManager>();            
-            IocManager.RegisterIfNot<IPlanoComExcessoDeParcelamentoAppService, PlanoComExcessoDeParcelamentoAppService>();
-            IocManager.RegisterIfNot<ILogApiIDEService, LogApiIDEService>();
+            //IocManager.RegisterIfNot<ITokenSSOManager, TokenSSOManager>();            
+            //IocManager.RegisterIfNot<IPlanoComExcessoDeParcelamentoAppService, PlanoComExcessoDeParcelamentoAppService>();
+            //IocManager.RegisterIfNot<ILogApiIDEService, LogApiIDEService>();
         }
     }
 }

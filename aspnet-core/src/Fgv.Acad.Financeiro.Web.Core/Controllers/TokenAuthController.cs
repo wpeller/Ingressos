@@ -19,7 +19,6 @@ using Abp.Zero.Configuration;
 using Fgv.Acad.Financeiro.AcessoExterno.Boundaries.Apis.LogIDE.Dtos;
 using Fgv.Acad.Financeiro.AcessoExterno.Boundaries.Apis.UsuarioServico;
 using Fgv.Acad.Financeiro.AcessoExterno.Boundaries.Apis.UsuarioServico.Dto;
-using Fgv.Acad.Financeiro.AcessoExterno.Boundaries.LogIDE;
 using Fgv.Acad.Financeiro.Authentication.TwoFactor.Google;
 using Fgv.Acad.Financeiro.Authorization;
 using Fgv.Acad.Financeiro.Authorization.Impersonation;
@@ -70,7 +69,7 @@ namespace Fgv.Acad.Financeiro.Web.Controllers
         private readonly GoogleAuthenticatorProvider _googleAuthenticatorProvider;
         private readonly IdentityManager.IdentityManager _identityManager;
         private readonly IUsuarioServicoAppService _usuarioServicoAppService;
-        private readonly ILogApiIDEService _logApiIdeService;
+       // private readonly ILogApiIDEService _logApiIdeService;
         private readonly IClientInfoProvider _clientInfoProvider;
 
 
@@ -94,7 +93,7 @@ namespace Fgv.Acad.Financeiro.Web.Controllers
             GoogleAuthenticatorProvider googleAuthenticatorProvider,
             IdentityManager.IdentityManager identityManager,
             IUsuarioServicoAppService usuarioServicoAppService,
-            ILogApiIDEService logApiIdeService,
+          //  ILogApiIDEService logApiIdeService,
             IClientInfoProvider clientInfoProvider)
         {
             _logInManager = logInManager;
@@ -116,7 +115,7 @@ namespace Fgv.Acad.Financeiro.Web.Controllers
             _identityManager = identityManager;
             _usuarioServicoAppService = usuarioServicoAppService;
             _identityOptions = identityOptions.Value;
-            _logApiIdeService = logApiIdeService;
+           // _logApiIdeService = logApiIdeService;
             _clientInfoProvider = clientInfoProvider;
         }
 
@@ -719,7 +718,7 @@ namespace Fgv.Acad.Financeiro.Web.Controllers
                 usuarioLogado = usuario
             };
 
-            Task.Run(() => _logApiIdeService.RegistraLogLogin(input));
+            //Task.Run(() => _logApiIdeService.RegistraLogLogin(input));
         }
     }
 }

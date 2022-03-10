@@ -13,6 +13,27 @@
     <RootNamespace>Fgv.Acad.Financeiro</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="AcessoExterno\Boundaries\Apis\**" />
+    <Compile Remove="AcessoExterno\Boundaries\WebServices\**" />
+    <Compile Remove="Relatorios\**" />
+    <Compile Remove="SSO\**" />
+    <EmbeddedResource Remove="AcessoExterno\Boundaries\Apis\**" />
+    <EmbeddedResource Remove="AcessoExterno\Boundaries\WebServices\**" />
+    <EmbeddedResource Remove="Relatorios\**" />
+    <EmbeddedResource Remove="SSO\**" />
+    <None Remove="AcessoExterno\Boundaries\Apis\**" />
+    <None Remove="AcessoExterno\Boundaries\WebServices\**" />
+    <None Remove="Relatorios\**" />
+    <None Remove="SSO\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="AcessoExterno\Boundaries\leiame.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AcessoExterno\Boundaries\Apis\HttpClientApiRequest.cs" />
+    <Compile Include="AcessoExterno\Boundaries\WebServices\HttpClientWebServicesRequest.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="EPPlus.Core" Version="1.5.4" />
     <PackageReference Include="Fgv.Tic.ApiConnectorCore" Version="1.0.0.9" />
     <PackageReference Include="Fgv.Tic.WsConnectorCore" Version="1.0.0.3" />
