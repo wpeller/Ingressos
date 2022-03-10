@@ -85,6 +85,13 @@ namespace Fgv.Acad.Financeiro.EntityFrameworkCore
              .WithMany(e => e.Vendas)
              .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Cliente>(entity => {
+                entity.HasIndex(e => e.CPF).IsUnique();
+            });
+
+            modelBuilder.Entity<Cliente>(entity => {
+                entity.HasIndex(e => e.Email).IsUnique();
+            });
 
             modelBuilder.ConfigurePersistedGrantEntity();
 

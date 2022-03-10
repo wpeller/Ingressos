@@ -9,12 +9,12 @@ namespace Fgv.Acad.Financeiro.Eventos
 
     public class ClienteDto  
     {
-        public long Id { get; set; }
+        public long ?Id { get; set; }
         public string  Nome { get; set; }
         public string CPF { get; set; }
+        public string Email { get; set; }        
         public string Endereco { get; set; }
-        public List<Venda> Vendas { get; set; }
-        public DateTime Timestamp { get; set; }
+        public DateTime ?Timestamp { get; set; }
 
     }
 }

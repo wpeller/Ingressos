@@ -14,4 +14,8 @@
   <ItemGroup>
     <PackageReference Update="NETStandard.Library" Version="2.0.3" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Cliente\" />
+    <Folder Include="Venda\" />
+  </ItemGroup>
 </Project>

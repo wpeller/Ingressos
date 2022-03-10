@@ -35,7 +35,7 @@ namespace Fgv.Acad.Financeiro.Migrations
                 name: "Timestamp",
                 table: "Evento",
                 nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                defaultValue: DateTime.Now);
 
             migrationBuilder.AddColumn<string>(
                 name: "local",

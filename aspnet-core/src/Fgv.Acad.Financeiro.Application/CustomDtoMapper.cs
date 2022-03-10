@@ -31,6 +31,7 @@ using Fgv.Acad.Financeiro.Navigations;
 using Fgv.Acad.Financeiro.Notifications.Dto;
 using Fgv.Acad.Financeiro.Organizations.Dto;
 using Fgv.Acad.Financeiro.Sessions.Dto;
+using Fgv.Acad.Financeiro.Eventos;
 
 namespace Fgv.Acad.Financeiro
 {
@@ -131,6 +132,10 @@ namespace Fgv.Acad.Financeiro
                     options.Condition((src, dst) => string.IsNullOrEmpty(dst.Module));
                     options.MapFrom(x => FinanceiroConsts.ModuleName);
                 });
+
+            configuration.CreateMap<ClienteDto, Cliente>()
+               .ForMember(dst => dst.Timestamp, options => options.MapFrom(x => x.Timestamp.Value ))
+               .ForMember(dto => dto.Vendas, options => options.Ignore());
         }
     }
 }

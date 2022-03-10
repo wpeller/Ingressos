@@ -11,13 +11,13 @@ namespace Fgv.Acad.Financeiro.Eventos
 {
 
 
-    public class EventoManager : IEventoManager
+    public class ClienteManager : IClienteManager
     {
 
-        private readonly IRepository<Evento, long> _eventoRepository;
+        private readonly IRepository<Cliente, long> _eventoRepository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
 
-        public EventoManager(IRepository<Evento,long> repository,
+        public ClienteManager(IRepository<Cliente, long> repository,
                                         IUnitOfWorkManager unitOfWorkManager)
         {
             _eventoRepository = repository;
@@ -25,24 +25,23 @@ namespace Fgv.Acad.Financeiro.Eventos
         }
 
 
-        public async Task< List<Evento>> ObterTodosAtivos() {
+        public async Task< List<Cliente>> ObterTodos() {
 
             return await _eventoRepository.GetAll()
-                .Include(t => t.ListaTipoIngresso)
                 .ToListAsync();
 
 
         }
 
 
-        public async Task<long> SalvarOuAlterar(Evento evento)
+        public async Task<long> SalvarOuAlterar(Cliente cliente)
         {
 
 
-            if (evento != null)
+            if (cliente != null)
             {
 
-                Evento output = await _eventoRepository.InsertOrUpdateAsync(evento);
+                Cliente output = await _eventoRepository.InsertOrUpdateAsync(cliente);
 
                 _unitOfWorkManager.Current.SaveChanges();
 
@@ -55,13 +54,12 @@ namespace Fgv.Acad.Financeiro.Eventos
         }
 
 
-        public async Task<Evento> ObterEvento(long idEvento)
+        public async Task<Cliente> ObterCliente(string cpf)
         {
 
-            return await _eventoRepository.GetAll()
-                .Include(t => t.ListaTipoIngresso) 
-                 .Where(x => x.Id == idEvento)
-                .FirstOrDefaultAsync();
+            return _eventoRepository.GetAll()                 
+                 .Where(x => x.CPF.Equals(cpf))
+                .FirstOrDefault();
 
 
         }
