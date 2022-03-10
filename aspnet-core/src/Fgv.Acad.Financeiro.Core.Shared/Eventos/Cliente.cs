@@ -6,8 +6,8 @@ using System.Text;
 
 namespace Fgv.Acad.Financeiro.Eventos
 {
-
-    public class ClienteDto  
+    [Table("Cliente")]
+    public class Cliente : Entity<long>
     {
         public string  Nome { get; set; }
         public string CPF { get; set; }
