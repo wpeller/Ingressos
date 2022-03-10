@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,9 @@ namespace Fgv.Acad.Financeiro.Eventos
 
         public async Task< List<Evento>> ObterTodosAtivos() {
 
-            return _eventoRepository.GetAll().ToList();
+            return _eventoRepository.GetAll()
+                .Include(t => t.ListaTipoIngresso)
+                .ToList();
 
 
         }
@@ -48,6 +51,18 @@ namespace Fgv.Acad.Financeiro.Eventos
             }
 
             return 0;
+
+        }
+
+
+        public async Task<Evento> ObterEvento(long idEvento)
+        {
+
+            return _eventoRepository.GetAll()
+                .Include(t => t.ListaTipoIngresso) 
+                 .Where(x => x.Id == idEvento)
+                .FirstOrDefault();
+
 
         }
 

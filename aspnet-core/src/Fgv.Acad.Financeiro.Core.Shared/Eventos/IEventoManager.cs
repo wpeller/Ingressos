@@ -6,6 +6,7 @@ namespace Fgv.Acad.Financeiro.Eventos
 {
     public interface IEventoManager : ITransientDependency
     {
+        Task<Evento> ObterEvento(long idEvento);
         Task<List<Evento>> ObterTodosAtivos();
         Task<long> SalvarOuAlterar(Evento evento);
     }

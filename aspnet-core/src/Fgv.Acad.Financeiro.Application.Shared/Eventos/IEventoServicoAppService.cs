@@ -6,6 +6,7 @@ namespace Fgv.Acad.Financeiro.Eventos
 {
     public interface IEventoServicoAppService
     {
-        GenericResultObject<List<Evento>> ObterTodosAtivos();
+        GenericResultObject<EventoDto> ObterPorId(long id);
+        GenericResultObject<List<EventoDto>> ObterTodosAtivos();
     }
 }
