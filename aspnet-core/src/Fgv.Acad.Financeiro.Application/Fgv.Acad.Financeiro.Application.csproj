@@ -28,7 +28,4 @@
   <ItemGroup>
     <Reference Include="System.Transactions" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Venda\" />
-  </ItemGroup>
 </Project>

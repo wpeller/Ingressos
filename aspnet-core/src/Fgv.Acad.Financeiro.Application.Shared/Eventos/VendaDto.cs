@@ -12,7 +12,7 @@ namespace Fgv.Acad.Financeiro.Eventos
 
         public long Id { get; set; }
 
-        public TipoIngresso TipoIngresso { get; set; }
+        public TipoIngressoDto TipoIngresso { get; set; }
 
         public ClienteDto Cliente { get; set; }
 

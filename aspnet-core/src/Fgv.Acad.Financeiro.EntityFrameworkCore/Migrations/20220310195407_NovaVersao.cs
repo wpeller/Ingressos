@@ -32,11 +32,11 @@ namespace Fgv.Acad.Financeiro.Migrations
                 column: "CPF",
                 unique: true);
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Cliente_Email2",
-                table: "Cliente",
-                column: "Email",
-                unique: true);
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_Cliente_Email2",
+            //    table: "Cliente",
+            //    column: "Email",
+            //    unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

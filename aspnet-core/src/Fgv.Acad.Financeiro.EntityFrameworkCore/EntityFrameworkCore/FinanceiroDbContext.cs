@@ -76,14 +76,14 @@ namespace Fgv.Acad.Financeiro.EntityFrameworkCore
             modelBuilder
               .Entity<Venda>()
               .HasOne(e => e.TipoIngresso)
-              .WithMany(e => e.Vendas)
-              .OnDelete(DeleteBehavior.Cascade);
+              .WithMany(e => e.Vendas);
 
             modelBuilder
-             .Entity<Venda>()
-             .HasOne(e => e.Cliente )
-             .WithMany(e => e.Vendas)
-             .OnDelete(DeleteBehavior.Cascade);
+              .Entity<Venda>()
+              .HasOne(e => e.Cliente)
+              .WithMany(e => e.Vendas);
+
+
 
             modelBuilder.Entity<Cliente>(entity => {
                 entity.HasIndex(e => e.CPF).IsUnique();

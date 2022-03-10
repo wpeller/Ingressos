@@ -136,6 +136,9 @@ namespace Fgv.Acad.Financeiro
             configuration.CreateMap<ClienteDto, Cliente>()
                .ForMember(dst => dst.Timestamp, options => options.MapFrom(x => x.Timestamp.Value ))
                .ForMember(dto => dto.Vendas, options => options.Ignore());
+
+            configuration.CreateMap<VendaDto, Venda>()
+              .ForMember(dst => dst.Timestamp, options => options.MapFrom(x => x.Timestamp));
         }
     }
 }
