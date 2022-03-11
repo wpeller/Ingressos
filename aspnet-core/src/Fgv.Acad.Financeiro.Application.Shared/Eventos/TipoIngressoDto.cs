@@ -10,7 +10,7 @@ namespace Fgv.Acad.Financeiro.Eventos
     public class TipoIngressoDto  
     {        
         public long Id { get; set; }
-        public long Descricao { get; set; }
+        public string  Descricao { get; set; }
         public decimal Valor { get; set; }
         public DateTime Timestamp { get; set; }
 

@@ -13,6 +13,11 @@
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="AcessoExterno\**" />
+    <EmbeddedResource Remove="AcessoExterno\**" />
+    <None Remove="AcessoExterno\**" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\src\Fgv.Acad.Financeiro.Application\Fgv.Acad.Financeiro.Application.csproj" />
     <ProjectReference Include="..\..\src\Fgv.Acad.Financeiro.EntityFrameworkCore\Fgv.Acad.Financeiro.EntityFrameworkCore.csproj" />
   </ItemGroup>

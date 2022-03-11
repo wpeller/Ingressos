@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Fgv.Acad.Financeiro.Eventos
 {
-    public class EventoServicoAppService : FinanceiroAppServiceBase, IEventoServicoAppService
+    public class EventoServicoAppService : FinanceiroAppServiceBase, IEventoServicoAppService 
     {
         private readonly IEventoManager _eventoManager;
 
@@ -65,6 +65,7 @@ namespace Fgv.Acad.Financeiro.Eventos
 
             evento = ObjectMapper.Map<Evento>(eventoDto);
 
+            
             id = _eventoManager.SalvarOuAlterar(evento).Result;
 
 

@@ -8,5 +8,6 @@ namespace Fgv.Acad.Financeiro.Eventos
     {
         GenericResultObject<EventoDto> ObterPorId(long id);
         GenericResultObject<List<EventoDto>> ObterTodosAtivos();
+        GenericResultObject<long> SalvarOuAlterar(EventoDto eventoDto);
     }
 }

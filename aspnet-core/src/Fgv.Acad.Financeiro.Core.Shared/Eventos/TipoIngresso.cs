@@ -12,7 +12,7 @@ namespace Fgv.Acad.Financeiro.Eventos
 
         [ForeignKey("IdEvento")]
         public Evento Evento{ get; set; }
-        public long Descricao { get; set; }
+        public string  Descricao { get; set; }
         public decimal Valor { get; set; }
         public List<Venda> Vendas { get; set; }
         public DateTime Timestamp { get; set; }
